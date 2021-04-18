@@ -141,6 +141,17 @@ client.connect(err => {
             })
     })
 
+    // checking for admin
+    app.get('/checkAdmin/:email', (req, res) => {
+        adminCollection.find({ email: req.params.email })
+            .toArray((err, docs) => res.send(docs.length > 0));
+    })
+    // checking for user
+    app.get('/checkUser/:email', (req, res) => {
+        adminCollection.find({ email: req.params.email })
+            .toArray((err, docs) => res.send(docs.length > 0));
+    })
+
 });
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
